@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Connection Warning</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="panel">
+    <h1>YOUR IP HAS BEEN DETECTED</h1>
+    <h2>By continuing, you consent to connection data being processed.</h2>
+    <div class="row">
+      <span class="label">IP ADDRESS:</span>
+      <span id="ip">Loading...</span>
+    </div>
+
+    <div class="row">
+      <span class="label">COUNTRY:</span>
+      <span id="country">Loading...</span>
+    </div>
+
+    <div class="row">
+      <span class="label">CITY:</span>
+      <span id="city">Loading...</span>
+    </div>
+  </div>
+
+<div id="status">Preparando descarga...</div>
+
+<script>
+const status = document.getElementById("status");
+
+status.innerText = "Descargando archivos...";
+
+window.launcher.onProgress((progress) => {
+    status.innerText = "Descargando... " + progress + "%";
+});
+
+window.launcher.onComplete(() => {
+    status.innerText = "Descarga completada ✔";
+});
+</script>
+
+  <script src="script.js"></script>
+</body>
+</html>

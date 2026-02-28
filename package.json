@@ -1,0 +1,47 @@
+{
+  "name": "replay-launcher",
+  "version": "1.0.0",
+  "description": "Replay Launcher",
+  "main": "main.js",
+  "author": "Made By Rodrigo",
+  "license": "MIT",
+  "private": true,
+
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+
+  "devDependencies": {
+    "electron": "^29.0.0",
+    "electron-builder": "^24.13.3"
+  },
+
+  "build": {
+    "appId": "com.modern.launcher",
+    "productName": "ModernLauncher",
+
+    "directories": {
+      "output": "dist"
+    },
+
+    "files": [
+      "**/*",
+      "!dist/*"
+    ],
+
+    "win": {
+      "target": "nsis",
+      "icon": "logo.ico"
+    },
+
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "runAfterFinish": true
+    }
+  }
+}

@@ -1,0 +1,46 @@
+body {
+  background: linear-gradient(180deg, #050505, #000);
+  color: #ff3b3b;
+  font-family: "Courier New", monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.panel {
+  background: rgba(10, 10, 10, 0.9);
+  border: 1px solid #ff3b3b;
+  padding: 40px 50px;
+  border-radius: 12px;
+  box-shadow: 0 0 50px rgba(255, 59, 59, 0.5);
+  text-align: center;
+  animation: flicker 3s infinite;
+}
+
+h1 {
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px #ff3b3b;
+}
+
+.alert {
+  color: #ff8a8a;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+.row {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.label {
+  color: #aaa;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.9; }
+}
