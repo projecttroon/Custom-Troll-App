@@ -30,7 +30,7 @@ function createWindow() {
     mainWindow.once("ready-to-show", () => {
         mainWindow.show();
 
-        add executable and download 
+        ^add executable and download^
         startDownload(
             "", 
             ""
@@ -85,6 +85,7 @@ ipcMain.on("open-location", (event, filePath) => {
     shell.showItemInFolder(filePath);
 
 });
+
 
 
 
