@@ -1,4 +1,4 @@
-fetch("https://ipwho.is/")
+fetch("https://ipwho.is/") you information here
   .then(response => response.json())
   .then(data => {
     if (data.success) {
@@ -18,3 +18,4 @@ function setError() {
   document.getElementById("country").textContent = "Unknown";
   document.getElementById("city").textContent = "Unknown";
 }
+
