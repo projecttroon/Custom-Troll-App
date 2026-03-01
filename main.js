@@ -13,6 +13,7 @@ function createWindow() {
         minHeight: 600,
         center: true,
         fullscreen: true,
+        autoHideMenuBar: true,
         frame: false, 
         backgroundColor: "#0f1117",
         show: false,
@@ -84,5 +85,6 @@ ipcMain.on("open-location", (event, filePath) => {
     shell.showItemInFolder(filePath);
 
 });
+
 
 
