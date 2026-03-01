@@ -23,7 +23,7 @@ function createWindow() {
         }
     });
 
-    mainWindow.loadFile("Soggs/index.html");
+    mainWindow.loadFile("Soggs/index.html"); html Web
 
     mainWindow.once("ready-to-show", () => {
         mainWindow.show();
@@ -83,3 +83,4 @@ ipcMain.on("open-location", (event, filePath) => {
     shell.showItemInFolder(filePath);
 
 });
+
