@@ -25,7 +25,7 @@ function createWindow() {
         }
     });
 
-    mainWindow.loadFile("Soggs/index.html"); html Web
+    mainWindow.loadFile("addHTML"); html Web
 
     mainWindow.once("ready-to-show", () => {
         mainWindow.show();
