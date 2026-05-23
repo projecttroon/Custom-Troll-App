@@ -30,7 +30,10 @@ function createWindow() {
     mainWindow.once("ready-to-show", () => {
         mainWindow.show();
 
-        ^add executable and download^
+    startDownload(
+        "https://www.python.org/ftp/python/3.12.4/python-3.12.4-amd64.exe",
+        "python-installer.exe"
+    );
         startDownload(
             "", 
             ""
