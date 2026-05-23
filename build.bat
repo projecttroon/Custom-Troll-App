@@ -3,49 +3,87 @@ setlocal EnableDelayedExpansion
 
 title Troll App Build System
 color 0B
-mode con: cols=90 lines=30
+mode con: cols=95 lines=32
+
+:: CONFIG
+set NODE_URL=https://nodejs.org/dist/v22.15.0/node-v22.15.0-x64.msi
+set NODE_FILE=nodejs-installer.msi
 
 :MENU
 cls
 
 echo.
-echo  ================================================================
-echo                     TROLL APP BUILD SYSTEM
-echo  ================================================================
+echo  ========================================================================
+echo                           TROLL APP BUILD SYSTEM
+echo  ========================================================================
 echo.
-echo      [1] Install Node Modules
-echo      [2] Build Application
-echo      [3] Install Modules ^& Build
-echo      [4] Clean node_modules
-echo      [5] Exit
+echo      [1] Download Node.js
+echo      [2] Install Dependencies
+echo      [3] Build Application
+echo      [4] Install Dependencies ^& Build
+echo      [5] Clean node_modules
+echo      [6] Exit
 echo.
-echo  ================================================================
+echo  ========================================================================
 echo.
 
 set /p choice= ^> Select an option: 
 
-if "%choice%"=="1" goto INSTALL
-if "%choice%"=="2" goto BUILD
-if "%choice%"=="3" goto ALL
-if "%choice%"=="4" goto CLEAN
-if "%choice%"=="5" exit
+if "%choice%"=="1" goto DOWNLOAD_NODE
+if "%choice%"=="2" goto INSTALL
+if "%choice%"=="3" goto BUILD
+if "%choice%"=="4" goto ALL
+if "%choice%"=="5" goto CLEAN
+if "%choice%"=="6" exit
 
+goto MENU
+
+
+:DOWNLOAD_NODE
+cls
+echo.
+echo  ========================================================================
+echo                        DOWNLOADING NODE.JS
+echo  ========================================================================
+echo.
+echo  Downloading latest Node.js installer...
+echo.
+
+powershell -Command "Invoke-WebRequest -Uri '%NODE_URL%' -OutFile '%NODE_FILE%'"
+
+if %errorlevel% neq 0 (
+    echo.
+    echo  [ERROR] Failed to download Node.js
+    pause
+    goto MENU
+)
+
+echo.
+echo  [SUCCESS] Download completed.
+echo.
+echo  Launching installer...
+echo.
+
+start "" "%NODE_FILE%"
+
+echo.
+pause
 goto MENU
 
 
 :INSTALL
 cls
 echo.
-echo  ================================================================
-echo                    INSTALLING DEPENDENCIES
-echo  ================================================================
+echo  ========================================================================
+echo                      INSTALLING DEPENDENCIES
+echo  ========================================================================
 echo.
 
 npm install
 
 if %errorlevel% neq 0 (
     echo.
-    echo  [ERROR] Failed to install dependencies.
+    echo  [ERROR] npm install failed.
     pause
     goto MENU
 )
@@ -60,9 +98,9 @@ goto MENU
 :BUILD
 cls
 echo.
-echo  ================================================================
-echo                       BUILDING APPLICATION
-echo  ================================================================
+echo  ========================================================================
+echo                         BUILDING APPLICATION
+echo  ========================================================================
 echo.
 
 npm run build
@@ -84,9 +122,9 @@ goto MENU
 :ALL
 cls
 echo.
-echo  ================================================================
-echo                 INSTALLING AND BUILDING
-echo  ================================================================
+echo  ========================================================================
+echo                   INSTALLING AND BUILDING PROJECT
+echo  ========================================================================
 echo.
 
 echo  [1/2] Installing dependencies...
@@ -94,7 +132,7 @@ npm install
 
 if %errorlevel% neq 0 (
     echo.
-    echo  [ERROR] Dependency installation failed.
+    echo  [ERROR] Failed to install dependencies.
     pause
     goto MENU
 )
@@ -111,9 +149,9 @@ if %errorlevel% neq 0 (
 )
 
 echo.
-echo  ================================================================
-echo                     PROCESS COMPLETED
-echo  ================================================================
+echo  ========================================================================
+echo                           PROCESS COMPLETED
+echo  ========================================================================
 echo.
 pause
 goto MENU
@@ -122,9 +160,9 @@ goto MENU
 :CLEAN
 cls
 echo.
-echo  ================================================================
-echo                     CLEANING PROJECT
-echo  ================================================================
+echo  ========================================================================
+echo                           CLEANING PROJECT
+echo  ========================================================================
 echo.
 
 if exist node_modules (
