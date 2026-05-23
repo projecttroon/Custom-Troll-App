@@ -7,11 +7,13 @@ echo         START APPLICATION
 echo =====================================
 echo.
 
-:: Check if build folder exists
-if not exist "dist" (
-    echo ERROR: The application is not compiled.
+:: Check if node_modules exists
+if not exist "node_modules" (
+    echo ERROR: Dependencies are not installed.
     echo.
-    echo Please run the build process first.
+    echo Please run:
+    echo npm install
+    echo.
     pause
     exit
 )
